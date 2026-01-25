@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEPADINA® Dose Preparation Guide (Singapore)</title>
+    <style>
+        :root {
+            --light-blue: #e6f2ff;
+            --light-green: #e6ffe6;
+            --accent-blue: #0066cc;
+            --accent-green: #009933;
+            --warning-color: #ff9900;
+            --highlight-color: #ff0000;
+            --text-color: #333;
+            --border-color: #ccc;
+        }
+        
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            padding: 15px;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background-color: var(--light-blue);
+            padding: 20px;
+            border-bottom: 3px solid var(--accent-blue);
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            color: var(--accent-blue);
+            font-size: 1.8rem;
+        }
+        
+        .header .subtitle {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .warning-banner {
+            background-color: #fff3cd;
+            border-left: 5px solid var(--warning-color);
+            padding: 12px 15px;
+            margin: 15px;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.95rem;
+        }
+        
+        .form-section {
+            padding: 20px;
+            background-color: var(--light-green);
+            margin: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: white;
+        }
+        
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 140px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .calculate-btn {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .reset-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .save-btn {
+            background-color: var(--accent-green);
+            color: white;
+        }
+        
+        .print-btn {
+            background-color: #ff9900;
+            color: white;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .results-section {
+            padding: 20px;
+            margin: 15px;
+            display: none;
+        }
+        
+        .results-header {
+            background-color: var(--light-blue);
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            border-bottom: 2px solid var(--accent-blue);
+            margin-bottom: 0;
+        }
+        
+        .results-header h2 {
+            margin: 0;
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+        }
+        
+        .dose-summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-top: none;
+        }
+        
+        .dose-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .dose-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dose-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+        
+        .steps-container {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .step {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: 700;
+        }
+        
+        .step-title {
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+        
+        .step-content {
+            margin-left: 40px;
+        }
+        
+        .highlight {
+            background-color: #ff0000;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 700;
+            display: inline;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+        }
+        
+        .important-instruction {
+            background-color: #fff3e6;
+            border-left: 4px solid #ff9900;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-instruction strong {
+            color: #cc6600;
+        }
+        
+        .activation-method {
+            background-color: #e6f7ff;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px dashed #0066cc;
+            margin: 10px 0;
+        }
+        
+        .calculation-box {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-blue);
+            margin: 15px 0;
+        }
+        
+        .calculation-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent-blue);
+        }
+        
+        .abbreviations {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        
+        .abbreviations h3 {
+            margin-top: 0;
+            color: #666;
+        }
+        
+        .adverse-events {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid var(--warning-color);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .important-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #999;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+            background-color: white;
+        }
+        
+        /* Add space for ad banner - REDUCED SIGNIFICANTLY */
+        .ad-banner-space {
+            height: 180px; /* Reduced from 340px to 180px (removed 160px = 8 lines) */
+            width: 100%;
+            clear: both;
+            margin-top: 20px;
+        }
+        
+        @media print {
+            .form-section, .button-group, .no-print, .ad-banner-space {
+                display: none !important;
+            }
+            
+            .results-section {
+                display: block !important;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .dose-details {
+                flex-direction: column;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                min-width: 100%;
+            }
+            
+            /* On mobile, reduce the space needed for ad banner */
+            .ad-banner-space {
+                height: 140px; /* Reduced from 220px to 140px (removed 80px = 4 lines) */
+            }
+            
+            .important-info {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TEPADINA® Dose Preparation Guide (Singapore)</h1>
+            <div class="subtitle">For Healthcare Professionals only</div>
+        </div>
+        
+        <div class="warning-banner">
+            <strong>Important:</strong> The TEPADINA® 400mg MULTICHAMBER BAG (MCB) must be activated <span class="highlight">immediately</span> upon removal from refrigeration. To activate MCB, press firmly on the <span class="highlight">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure, then mix <span class="highlight">vigorously</span>.
+        </div>
+        
+        <div class="form-section">
+            <h2>Dose Calculation Parameters</h2>
+            <div class="form-group">
+                <label for="dose">TEPADINA® Dose (mg)</label>
+                <input type="number" id="dose" min="200" max="1000" step="1" value="260" placeholder="Enter dose between 200-1000mg">
+                <small>Dose range: 200mg to 1000mg in 1mg increments</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="frequency">Frequency of Dosing</label>
+                <select id="frequency">
+                    <option value="od">OD for 2 days (Once daily for 2 days)</option>
+                    <option value="bid">BID (Bis in die - twice a day)</option>
+                </select>
+            </div>
+            
+            <div class="button-group">
+                <button id="calculateBtn" class="calculate-btn">Calculate Preparation Steps</button>
+                <button id="resetBtn" class="reset-btn">Reset</button>
+            </div>
+        </div>
+        
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2>TEPADINA® Preparation Steps</h2>
+            </div>
+            
+            <div class="dose-summary">
+                <div class="dose-details">
+                    <div class="dose-item">
+                        <div>Prescribed Dose:</div>
+                        <div class="dose-value" id="prescribedDose">260 mg</div>
+                    </div>
+                    <div class="dose-item">
+                        <div>Dosing Frequency:</div>
+                        <div class="dose-value" id="doseFrequency">OD for 2 days</div>
+                    </div>
+                    <div class="dose-item">
+                        <div>Materials Required:</div>
+                        <div class="dose-value" id="materials">1 MCB, 2 vials</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="steps-container" id="stepsContainer">
+                <!-- Steps will be dynamically inserted here -->
+            </div>
+            
+            <div class="abbreviations">
+                <h3>Abbreviations</h3>
+                <p><strong>OD:</strong> Once daily</p>
+                <p><strong>BID:</strong> Bis in die (twice a day)</p>
+                <p><strong>MCB:</strong> MULTICHAMBER BAG</p>
+                <p><strong>PVC:</strong> Polyvinyl Chloride</p>
+                <p><strong>EMA:</strong> European Medicines Agency</p>
+            </div>
+            
+            <div class="adverse-events">
+                <strong>Adverse events should be reported to:</strong> safety@axxessbio.com
+            </div>
+            
+            <div class="button-group no-print">
+                <button id="saveBtn" class="save-btn">Save Instructions</button>
+                <button id="printBtn" class="print-btn">Print Instructions</button>
+                <button id="recalculateBtn" class="reset-btn">Re-calculate</button>
+            </div>
+            
+            <!-- IMPORTANT INFO MOVED RIGHT BELOW THE BUTTONS -->
+            <div class="important-info">
+                <p>This guide is for Singapore use only. Refer to Singapore PI for complete prescribing information.</p>
+                <p>Stability data: Activated MCB stable for 48 hours at 2-8°C (Singapore PI). EMA reports 168 hours stability.</p>
+                <p>Mixed MCB and vials stable for 24 hours at 2-8°C.</p>
+            </div>
+            
+            <!-- Space for ad banner - REDUCED SIGNIFICANTLY -->
+            <div class="ad-banner-space"></div>
+        </div>
+        
+        <!-- FOOTER IS NOW EMPTY -->
+        <div class="footer">
+            <!-- Footer content has been moved to important-info section -->
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const doseInput = document.getElementById('dose');
+        const frequencySelect = document.getElementById('frequency');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const printBtn = document.getElementById('printBtn');
+        const recalculateBtn = document.getElementById('recalculateBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const stepsContainer = document.getElementById('stepsContainer');
+        const prescribedDoseEl = document.getElementById('prescribedDose');
+        const doseFrequencyEl = document.getElementById('doseFrequency');
+        const materialsEl = document.getElementById('materials');
+        
+        // Constants
+        const MCB_MG = 400;
+        const MCB_ML = 400;
+        const MCB_CONC = 1.0; // mg/ml (400mg/400ml = 1mg/ml)
+        const VIAL_MG = 100;
+        const VIAL_RECONSTITUTED_ML = 10; // 10ml per vial
+        const VIAL_CONC = 10.0; // mg/ml (100mg/10ml = 10mg/ml)
+        const MAX_ADD_TO_MCB = 150; // ml (maximum additional volume)
+        
+        // HTML templates for highlighted instructions
+        const CRITICAL_ACTIVATION_NOTE_HTML = `
+            <div class="important-instruction">
+                <strong>Critical Activation Note:</strong> The TEPADINA® 400mg MCB must be activated <span class="highlight">immediately</span> upon removal from refrigeration. To activate MCB, press firmly on the <span class="highlight">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure, then mix <span class="highlight">vigorously</span>.
+            </div>
+        `;
+        
+        const ACTIVATION_METHOD_HTML = `
+            <div class="activation-method">
+                <strong>Activation Method:</strong> Press firmly on the <span class="highlight">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure.
+            </div>
+        `;
+        
+        // Calculate preparation steps
+        function calculatePreparation(dose, frequency) {
+            const frequencyText = frequency === 'od' ? 'OD for 2 days' : 'BID';
+            const timeBetween = frequency === 'od' ? '24 hours' : '12 hours';
+            
+            // Determine preparation strategy based on dose
+            const strategy = determineStrategy(dose, frequency);
+            
+            // Generate preparation steps
+            const steps = generateSteps(dose, frequency, strategy, timeBetween);
+            
+            // Calculate materials needed
+            const materials = calculateMaterials(dose, frequency, strategy);
+            
+            return {
+                dose,
+                frequencyText,
+                strategy,
+                steps,
+                materials
+            };
+        }
+        
+        // Determine preparation strategy
+        function determineStrategy(dose, frequency) {
+            const dosePerInfusion = dose;
+            const totalForTwoInfusions = dose * 2;
+            
+            // Case 1: Dose is exact multiple of 400mg (400, 800, etc.)
+            if (dosePerInfusion % MCB_MG === 0) {
+                const mcbsPerInfusion = dosePerInfusion / MCB_MG;
+                return {
+                    type: 'mcbOnly',
+                    mcbsPerInfusion: mcbsPerInfusion,
+                    vialsPerInfusion: 0
+                };
+            }
+            
+            // Case 2: Dose > 800mg (needs multiple MCBs)
+            if (dosePerInfusion > 800) {
+                const mcbsPerInfusion = Math.floor(dosePerInfusion / MCB_MG);
+                const remainingDose = dosePerInfusion - (mcbsPerInfusion * MCB_MG);
+                const vialsPerInfusion = Math.ceil(remainingDose / VIAL_MG);
+                
+                // Check if we can add vial volume to MCB (max 150ml)
+                const vialVolumePerInfusion = remainingDose / VIAL_CONC; // volume in ml
+                if (vialVolumePerInfusion > MAX_ADD_TO_MCB) {
+                    // If volume exceeds limit, we need an extra MCB
+                    return {
+                        type: 'multipleMCBWithExtra',
+                        mcbsPerInfusion: mcbsPerInfusion + 1,
+                        vialsPerInfusion: 0
+                    };
+                }
+                
+                return {
+                    type: 'multipleMCBWithVials',
+                    mcbsPerInfusion: mcbsPerInfusion,
+                    vialsPerInfusion: vialsPerInfusion,
+                    remainingDose: remainingDose
+                };
+            }
+            
+            // Case 3: Special case for 260mg - use the example method from document
+            if (dosePerInfusion === 260) {
+                return {
+                    type: 'special260mg',
+                    mcbsPerInfusion: 1,
+                    vialsPerInfusion: 1, // per infusion
+                    dosePerInfusion: dosePerInfusion
+                };
+            }
+            
+            // Case 4: Dose between 200-399mg (similar to 275mg BID example)
+            if (dosePerInfusion < MCB_MG) {
+                // Check if total for 2 infusions can be prepared with 1 MCB + vials
+                const totalDose = dosePerInfusion * 2;
+                const vialsTotal = Math.ceil((totalDose - MCB_MG) / VIAL_MG);
+                const vialVolumeTotal = vialsTotal * VIAL_RECONSTITUTED_ML;
+                
+                // Calculate volume to remove from MCB (like 275mg example)
+                const volumeToRemove = MCB_ML - (totalDose - vialsTotal * VIAL_MG);
+                
+                return {
+                    type: 'splitMCBWithVials',
+                    mcbsTotal: 1,
+                    vialsTotal: vialsTotal,
+                    volumeToRemove: Math.max(0, volumeToRemove),
+                    dosePerInfusion: dosePerInfusion
+                };
+            }
+            
+            // Case 5: Default - use one MCB + vials per infusion (400-800mg)
+            const mcbsPerInfusion = 1;
+            const remainingDose = dosePerInfusion - MCB_MG;
+            const vialsPerInfusion = Math.ceil(remainingDose / VIAL_MG);
+            const vialVolumePerInfusion = remainingDose / VIAL_CONC; // volume in ml
+            
+            return {
+                type: 'mcbWithVials',
+                mcbsPerInfusion: mcbsPerInfusion,
+                vialsPerInfusion: vialsPerInfusion,
+                remainingDose: remainingDose,
+                vialVolumePerInfusion: vialVolumePerInfusion
+            };
+        }
+        
+        // Calculate materials needed
+        function calculateMaterials(dose, frequency, strategy) {
+            let mcbsTotal = 0;
+            let vialsTotal = 0;
+            
+            switch(strategy.type) {
+                case 'mcbOnly':
+                    mcbsTotal = strategy.mcbsPerInfusion * 2;
+                    vialsTotal = 0;
+                    break;
+                case 'multipleMCBWithVials':
+                case 'multipleMCBWithExtra':
+                    mcbsTotal = strategy.mcbsPerInfusion * 2;
+                    vialsTotal = strategy.vialsPerInfusion * 2;
+                    break;
+                case 'special260mg':
+                    mcbsTotal = 1;
+                    vialsTotal = 2; // 1 vial per infusion
+                    break;
+                case 'splitMCBWithVials':
+                    mcbsTotal = strategy.mcbsTotal;
+                    vialsTotal = strategy.vialsTotal;
+                    break;
+                case 'mcbWithVials':
+                    mcbsTotal = strategy.mcbsPerInfusion * 2;
+                    vialsTotal = strategy.vialsPerInfusion * 2;
+                    break;
+            }
+            
+            return { mcbsTotal, vialsTotal };
+        }
+        
+        // Generate preparation steps
+        function generateSteps(dose, frequency, strategy, timeBetween) {
+            const steps = [];
+            const frequencyDesc = frequency === 'od' ? 'once daily for 2 days' : 'twice a day';
+            const isBID = frequency === 'bid';
+            
+            // Step 1: Initial instructions
+            steps.push({
+                title: `Initial Preparation - ${dose}mg ${frequencyDesc}`,
+                content: generateInitialContent(dose, frequencyDesc, strategy)
+            });
+            
+            // Generate specific steps based on strategy
+            switch(strategy.type) {
+                case 'mcbOnly':
+                    steps.push(...generateMCBOnlySteps(dose, strategy, isBID, timeBetween));
+                    break;
+                case 'multipleMCBWithVials':
+                    steps.push(...generateMultipleMCBWithVialsSteps(dose, strategy, isBID, timeBetween));
+                    break;
+                case 'special260mg':
+                    steps.push(...generateSpecial260mgSteps(dose, strategy, isBID, timeBetween));
+                    break;
+                case 'splitMCBWithVials':
+                    steps.push(...generateSplitMCBWithVialsSteps(dose, strategy, isBID, timeBetween));
+                    break;
+                case 'mcbWithVials':
+                    steps.push(...generateMCBWithVialsSteps(dose, strategy, isBID, timeBetween));
+                    break;
+                case 'multipleMCBWithExtra':
+                    steps.push(...generateMultipleMCBWithExtraSteps(dose, strategy, isBID, timeBetween));
+                    break;
+            }
+            
+            // Final step: Stability information
+            steps.push({
+                title: "Stability and Storage",
+                content: generateStabilityContent(timeBetween)
+            });
+            
+            return steps;
+        }
+        
+        // Generate initial content
+        function generateInitialContent(dose, frequencyDesc, strategy) {
+            const materials = calculateMaterials(dose, 'od', strategy);
+            
+            return `
+                <p><strong>One way to prepare TEPADINA® dosing of ${dose}mg (${frequencyDesc}) using 100mg vials and 400mg MULTICHAMBER BAG (MCB):</strong></p>
+                ${CRITICAL_ACTIVATION_NOTE_HTML}
+                <p>Materials required:</p>
+                <ul>
+                    <li>${materials.mcbsTotal} × TEPADINA® 400mg MULTICHAMBER BAG (MCB)</li>
+                    ${materials.vialsTotal > 0 ? `<li>${materials.vialsTotal} × TEPADINA® 100mg vial${materials.vialsTotal !== 1 ? 's' : ''}</li>` : ''}
+                </ul>
+            `;
+        }
+        
+        // Generate steps for MCB only preparation
+        function generateMCBOnlySteps(dose, strategy, isBID, timeBetween) {
+            const steps = [];
+            const mcbsPerInfusion = strategy.mcbsPerInfusion;
+            const totalVolume = mcbsPerInfusion * MCB_ML;
+            const concentration = dose / totalVolume;
+            
+            // First infusion
+            steps.push({
+                title: `First Infusion Preparation (${dose}mg)`,
+                content: `
+                    ${ACTIVATION_METHOD_HTML}
+                    <p>1. Activate ${mcbsPerInfusion}× TEPADINA® 400mg MCB with <span class="highlight">vigorous mixing</span>.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Calculations:</div>
+                        <p>Total volume of activated ${mcbsPerInfusion}X MCB = ${totalVolume}ml</p>
+                        <p>Final concentration = ${dose}mg/${totalVolume}ml = ${concentration.toFixed(2)}mg/ml</p>
+                    </div>
+                    <p>2. Use this MCB with ${dose}mg for the 1<sup>st</sup> infusion (dosing of ${dose}mg TEPADINA® ${isBID ? 'bid' : 'OD for 2 days'}).</p>
+                `
+            });
+            
+            // Second infusion
+            steps.push({
+                title: `Second Infusion Preparation (${dose}mg)`,
+                content: `
+                    <p>For preparation of 2<sup>nd</sup> infusion of ${dose}mg (${isBID ? 'after 12 hours' : '24 hours later'}), repeat the above steps.</p>
+                `
+            });
+            
+            return steps;
+        }
+        
+        // Generate steps for multiple MCB with vials (like 950mg BID)
+        function generateMultipleMCBWithVialsSteps(dose, strategy, isBID, timeBetween) {
+            const steps = [];
+            const mcbsPerInfusion = strategy.mcbsPerInfusion;
+            const vialsPerInfusion = strategy.vialsPerInfusion;
+            const remainingDose = strategy.remainingDose;
+            const vialVolume = remainingDose / VIAL_CONC; // volume in ml
+            
+            // Calculate volumes and concentrations
+            const totalVolumeSecondMCB = MCB_ML + vialVolume;
+            const totalDrugSecondMCB = MCB_MG + remainingDose;
+            const concentrationSecondMCB = totalDrugSecondMCB / totalVolumeSecondMCB;
+            
+            // First infusion
+            steps.push({
+                title: `First Infusion Preparation (${dose}mg)`,
+                content: `
+                    ${ACTIVATION_METHOD_HTML}
+                    <p>1. Activate ${mcbsPerInfusion}× TEPADINA® 400mg MCB with <span class="highlight">vigorous mixing</span> (if dose is more than 800mg ${isBID ? 'BID' : 'OD for 2 days'} and up to ${dose}mg ${isBID ? 'BID' : 'OD for 2 days'}, need to activate ${mcbsPerInfusion} 400mg MCBs first, then complete the preparation with 100mg vials in the 2<sup>nd</sup> activated MCB).</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Activated MCB Calculations:</div>
+                        <p>Total volume of activated ${mcbsPerInfusion}X MCB = ${mcbsPerInfusion * MCB_ML}ml</p>
+                        <p>Final concentration = ${mcbsPerInfusion * MCB_MG}mg/${mcbsPerInfusion * MCB_ML}ml = 1mg/ml</p>
+                    </div>
+                    ${vialsPerInfusion > 0 ? `
+                        <p>2. Reconstitute ${vialsPerInfusion}× TEPADINA® 100mg vial${vialsPerInfusion > 1 ? 's' : ''} with 10ml of sterile water for injection each.</p>
+                        <p>3. Transfer ${vialVolume.toFixed(1)}ml from the reconstituted vial${vialsPerInfusion > 1 ? 's' : ''} into 2<sup>nd</sup> MCB.</p>
+                        <div class="calculation-box">
+                            <div class="calculation-title">Mixed 2<sup>nd</sup> MCB Calculations:</div>
+                            <p>Total volume of 2<sup>nd</sup> MCB = ${totalVolumeSecondMCB.toFixed(1)}ml</p>
+                            <p>Final concentration = ${totalDrugSecondMCB}mg/${totalVolumeSecondMCB.toFixed(1)}ml = ${concentrationSecondMCB.toFixed(2)}mg/ml (approved by manufacturer)</p>
+                        </div>
+                    ` : ''}
+                    <p>${vialsPerInfusion > 0 ? '4' : '2'}. Use these ${mcbsPerInfusion} MCBs with ${dose}mg for the 1<sup>st</sup> infusion (dosing of ${dose}mg TEPADINA® ${isBID ? 'bid' : 'OD for 2 days'}).</p>
+                `
+            });
+            
+            // Second infusion
+            steps.push({
+                title: `Second Infusion Preparation (${dose}mg)`,
+                content: `
+                    <p>For preparation of 2<sup>nd</sup> infusion of ${dose}mg (${isBID ? 'after 12 hours' : '24 hours later'}), repeat the above steps.</p>
+                `
+            });
+            
+            return steps;
+        }
+        
+        // Generate steps for 260mg special case (from document example)
+        function generateSpecial260mgSteps(dose, strategy, isBID, timeBetween) {
+            const steps = [];
+            const timeText = isBID ? '12 hours later' : '24 hours later';
+            
+            // First infusion
+            steps.push({
+                title: `First Infusion Preparation (${dose}mg)`,
+                content: `
+                    ${ACTIVATION_METHOD_HTML}
+                    <p>1. Activate 1× TEPADINA® 400mg MCB with <span class="highlight">vigorous mixing</span>.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Activated MCB Calculations:</div>
+                        <p>Total volume of activated 1X MCB = 400ml</p>
+                        <p>Final concentration = 400mg/400ml = 1mg/ml</p>
+                    </div>
+                    <p>2. Remove 200ml from the activated MCB and transfer into an empty PVC-free infusion bag to be used for the first infusion.</p>
+                    <p>3. Reconstitute 1× TEPADINA® 100mg vial with 10ml of sterile water for injection.</p>
+                    <p>4. Transfer 6ml from the 1× vial into the PVC-free infusion bag and use this for the first infusion.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">First Infusion Calculations:</div>
+                        <p>Total volume = 206ml</p>
+                        <p>Final concentration = 260mg/206ml = 1.26mg/ml (approved by manufacturer)</p>
+                    </div>
+                    <p>5. Store the MCB at 2-8°C.</p>
+                `
+            });
+            
+            // Second infusion
+            steps.push({
+                title: `Second Infusion Preparation (${dose}mg)`,
+                content: `
+                    <p>1. Remove the MCB from 2-8°C.</p>
+                    <p>2. Reconstitute 1× TEPADINA® 100mg vial with 10ml of sterile water for injection.</p>
+                    <p>3. Transfer 6ml from the 1× vial into this MCB to be used for the second infusion.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Second Infusion Calculations:</div>
+                        <p>Total volume = 206ml</p>
+                        <p>Final concentration = 260mg/206ml = 1.26mg/ml (approved by manufacturer)</p>
+                    </div>
+                    <p>4. Use this MCB for the second infusion ${timeText} (dosing of ${dose}mg TEPADINA® ${isBID ? 'bid' : 'OD for 2 days'}).</p>
+                `
+            });
+            
+            return steps;
+        }
+        
+        // Generate steps for split MCB with vials (like 275mg BID)
+        function generateSplitMCBWithVialsSteps(dose, strategy, isBID, timeBetween) {
+            const steps = [];
+            const totalDose = dose * 2;
+            const vialsTotal = strategy.vialsTotal;
+            const volumeToRemove = strategy.volumeToRemove;
+            const doseFromVials = vialsTotal * VIAL_MG;
+            const vialVolumeTotal = vialsTotal * VIAL_RECONSTITUTED_ML;
+            const totalVolume = MCB_ML - volumeToRemove + vialVolumeTotal;
+            const totalDrug = MCB_MG + doseFromVials;
+            const concentration = totalDrug / totalVolume;
+            const volumePerInfusion = totalVolume / 2;
+            
+            // Preparation for both infusions
+            steps.push({
+                title: `Preparation for Both Infusions (${dose}mg each)`,
+                content: `
+                    ${ACTIVATION_METHOD_HTML}
+                    <p>1. Activate 1× TEPADINA® 400mg MCB with <span class="highlight">vigorous mixing</span>.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Activated MCB Calculations:</div>
+                        <p>Total volume of activated 1X MCB = 400ml</p>
+                        <p>Final concentration = 400mg/400ml = 1mg/ml</p>
+                    </div>
+                    ${volumeToRemove > 0 ? `<p>2. Remove ${volumeToRemove}ml from the activated MCB.</p>` : ''}
+                    <p>${volumeToRemove > 0 ? '3' : '2'}. Reconstitute ${vialsTotal}× TEPADINA® 100mg vial${vialsTotal > 1 ? 's' : ''} with 10ml of sterile water for injection each.</p>
+                    <p>${volumeToRemove > 0 ? '4' : '3'}. Transfer ${vialVolumeTotal}ml from the ${vialsTotal}× vial${vialsTotal > 1 ? 's' : ''} into the MCB.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Mixed MCB Calculations:</div>
+                        <p>Total volume = ${totalVolume.toFixed(1)}ml</p>
+                        <p>Final concentration = ${totalDrug}mg/${totalVolume.toFixed(1)}ml = ${concentration.toFixed(2)}mg/ml (approved by manufacturer)</p>
+                    </div>
+                    <p>${volumeToRemove > 0 ? '5' : '4'}. From MCB of ${totalVolume.toFixed(1)}ml, extract ${volumePerInfusion.toFixed(1)}ml (${dose}mg of TEPADINA®) and transfer into an empty PVC-free infusion bag, and use this for the first infusion.</p>
+                    <p>${volumeToRemove > 0 ? '6' : '5'}. Store MCB with remaining ${volumePerInfusion.toFixed(1)}ml at 2-8°C. Use this MCB for the second infusion ${isBID ? '12 hours later' : '24 hours later'} (dosing of ${dose}mg TEPADINA® ${isBID ? 'bid' : 'OD for 2 days'}).</p>
+                `
+            });
+            
+            return steps;
+        }
+        
+        // Generate steps for MCB with vials (general case 400-800mg)
+        function generateMCBWithVialsSteps(dose, strategy, isBID, timeBetween) {
+            const steps = [];
+            const vialsPerInfusion = strategy.vialsPerInfusion;
+            const remainingDose = strategy.remainingDose;
+            const vialVolumePerInfusion = strategy.vialVolumePerInfusion;
+            const totalVolume = MCB_ML + vialVolumePerInfusion;
+            const totalDrug = MCB_MG + remainingDose;
+            const concentration = totalDrug / totalVolume;
+            
+            // First infusion
+            steps.push({
+                title: `First Infusion Preparation (${dose}mg)`,
+                content: `
+                    ${ACTIVATION_METHOD_HTML}
+                    <p>1. Activate 1× TEPADINA® 400mg MCB with <span class="highlight">vigorous mixing</span>.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Activated MCB Calculations:</div>
+                        <p>Total volume of activated 1X MCB = 400ml</p>
+                        <p>Final concentration = 400mg/400ml = 1mg/ml</p>
+                    </div>
+                    ${vialsPerInfusion > 0 ? `
+                        <p>2. Reconstitute ${vialsPerInfusion}× TEPADINA® 100mg vial${vialsPerInfusion > 1 ? 's' : ''} with 10ml of sterile water for injection each.</p>
+                        <p>3. Transfer ${vialVolumePerInfusion.toFixed(1)}ml from the reconstituted vial${vialsPerInfusion > 1 ? 's' : ''} into the activated MCB.</p>
+                    ` : ''}
+                    <div class="calculation-box">
+                        <div class="calculation-title">Final Infusion Calculations:</div>
+                        <p>Total volume = ${totalVolume.toFixed(1)}ml</p>
+                        <p>Final concentration = ${totalDrug}mg/${totalVolume.toFixed(1)}ml = ${concentration.toFixed(2)}mg/ml (approved by manufacturer)</p>
+                    </div>
+                    <p>${vialsPerInfusion > 0 ? '4' : '2'}. Use this MCB with ${dose}mg for the 1<sup>st</sup> infusion (dosing of ${dose}mg TEPADINA® ${isBID ? 'bid' : 'OD for 2 days'}).</p>
+                `
+            });
+            
+            // Second infusion
+            steps.push({
+                title: `Second Infusion Preparation (${dose}mg)`,
+                content: `
+                    <p>For preparation of 2<sup>nd</sup> infusion of ${dose}mg (${isBID ? 'after 12 hours' : '24 hours later'}), repeat the above steps.</p>
+                `
+            });
+            
+            return steps;
+        }
+        
+        // Generate steps for multiple MCB without vials (when vial volume would exceed 150ml)
+        function generateMultipleMCBWithExtraSteps(dose, strategy, isBID, timeBetween) {
+            const steps = [];
+            const mcbsPerInfusion = strategy.mcbsPerInfusion;
+            const totalVolume = mcbsPerInfusion * MCB_ML;
+            const totalDrug = mcbsPerInfusion * MCB_MG;
+            const concentration = totalDrug / totalVolume;
+            
+            // First infusion
+            steps.push({
+                title: `First Infusion Preparation (${dose}mg)`,
+                content: `
+                    ${ACTIVATION_METHOD_HTML}
+                    <p>1. Activate ${mcbsPerInfusion}× TEPADINA® 400mg MCB with <span class="highlight">vigorous mixing</span>.</p>
+                    <div class="calculation-box">
+                        <div class="calculation-title">Calculations:</div>
+                        <p>Total volume of activated ${mcbsPerInfusion}X MCB = ${totalVolume}ml</p>
+                        <p>Final concentration = ${totalDrug}mg/${totalVolume}ml = ${concentration.toFixed(2)}mg/ml</p>
+                    </div>
+                    <p>2. Use these ${mcbsPerInfusion} MCBs with ${totalDrug}mg for the 1<sup>st</sup> infusion (dosing of ${dose}mg TEPADINA® ${isBID ? 'bid' : 'OD for 2 days'}).</p>
+                `
+            });
+            
+            // Second infusion
+            steps.push({
+                title: `Second Infusion Preparation (${dose}mg)`,
+                content: `
+                    <p>For preparation of 2<sup>nd</sup> infusion of ${dose}mg (${isBID ? 'after 12 hours' : '24 hours later'}), repeat the above steps.</p>
+                `
+            });
+            
+            return steps;
+        }
+        
+        // Generate stability content
+        function generateStabilityContent(timeBetween) {
+            return `
+                <p><strong>Stability Information:</strong></p>
+                <ul>
+                    <li>Activated MCB: Stable for 48 hours when stored at 2-8°C (Singapore PI). Stability data approved by the European Medicines Agency (EMA) reports MCB is stable for 168 hours when stored at 2-8°C.</li>
+                    <li>The stability data of TEPADINA® from mixed MCB and vials is 24 hours when stored at 2-8°C.</li>
+                </ul>
+                <div class="adverse-events">
+                    <p>For more information on activating the TEPADINA 400mg - MULTICHAMBER BAG (MCB): <br>
+                    <a href="https://axxessbio.sharepoint.com/:v:/g/Eai_pehlj75Jtbku41ai7AAB6G3GLZo7YONC0h6COQdaTQ?e=0mBdLb" target="_blank">Click here for activation video</a></p>
+                    <p><em>The splitting of TEPADINA® dose administration described above are for illustrative purposes only. The choice of dose splitting remains at the discretion of healthcare professionals.</em></p>
+                </div>
+            `;
+        }
+        
+        // Display results
+        function displayResults(results) {
+            prescribedDoseEl.textContent = `${results.dose} mg`;
+            doseFrequencyEl.textContent = results.frequencyText;
+            
+            // Update materials
+            const mcbsText = results.materials.mcbsTotal > 0 ? `${results.materials.mcbsTotal} MCB${results.materials.mcbsTotal !== 1 ? 's' : ''}` : '';
+            const vialsText = results.materials.vialsTotal > 0 ? `${results.materials.vialsTotal} vial${results.materials.vialsTotal !== 1 ? 's' : ''}` : '';
+            materialsEl.textContent = `${mcbsText}${mcbsText && vialsText ? ', ' : ''}${vialsText}`;
+            
+            // Clear previous steps
+            stepsContainer.innerHTML = '';
+            
+            // Add new steps
+            results.steps.forEach((step, index) => {
+                const stepElement = document.createElement('div');
+                stepElement.className = 'step';
+                stepElement.innerHTML = `
+                    <div>
+                        <span class="step-number">${index + 1}</span>
+                        <span class="step-title">${step.title}</span>
+                    </div>
+                    <div class="step-content">${step.content}</div>
+                `;
+                stepsContainer.appendChild(stepElement);
+            });
+            
+            // Show results section
+            resultsSection.style.display = 'block';
+            
+            // Scroll to results with REDUCED offset for smaller ad banner
+            setTimeout(() => {
+                const offset = 160; // Reduced from 260 to 160 to match smaller ad space
+                const elementPosition = resultsSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+        
+        // Event Listeners
+        calculateBtn.addEventListener('click', () => {
+            const dose = parseInt(doseInput.value);
+            const frequency = frequencySelect.value;
+            
+            if (isNaN(dose) || dose < 200 || dose > 1000) {
+                alert('Please enter a valid dose between 200mg and 1000mg.');
+                doseInput.focus();
+                return;
+            }
+            
+            const results = calculatePreparation(dose, frequency);
+            displayResults(results);
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            doseInput.value = '260';
+            frequencySelect.value = 'od';
+            resultsSection.style.display = 'none';
+            // Scroll back to top when resetting
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        recalculateBtn.addEventListener('click', () => {
+            resultsSection.style.display = 'none';
+            doseInput.focus();
+            // Scroll back to input section when recalculating
+            document.querySelector('.form-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        saveBtn.addEventListener('click', () => {
+            const dose = doseInput.value;
+            const frequency = frequencySelect.options[frequencySelect.selectedIndex].text;
+            const stepsText = Array.from(document.querySelectorAll('.step')).map(step => {
+                const title = step.querySelector('.step-title').textContent;
+                const content = step.querySelector('.step-content').textContent;
+                return `${title}\n${content}`;
+            }).join('\n\n');
+            
+            const blob = new Blob([`TEPADINA® Preparation Guide (Singapore)\n\nPrescribed Dose: ${dose}mg\nFrequency: ${frequency}\n\n${stepsText}\n\nAdverse events should be reported to: safety@axxessbio.com\n\nThis guide is for Singapore use only. Refer to Singapore PI for complete prescribing information.\nStability data: Activated MCB stable for 48 hours at 2-8°C (Singapore PI). EMA reports 168 hours stability.\nMixed MCB and vials stable for 24 hours at 2-8°C.`], 
+                {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `TEPADINA_${dose}mg_${frequency.replace(/\s+/g, '_')}_Singapore.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+        
+        printBtn.addEventListener('click', () => {
+            window.print();
+        });
+        
+        // Allow Enter key to calculate
+        doseInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                calculateBtn.click();
+            }
+        });
+        
+        // Initialize with default calculation
+        window.addEventListener('DOMContentLoaded', () => {
+            const defaultResults = calculatePreparation(260, 'od');
+            displayResults(defaultResults);
+        });
+    </script>
+</body>
+</html>
