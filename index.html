@@ -669,6 +669,9 @@
         const stepsContainer = document.getElementById('steps-container');
         const timestamp = document.getElementById('timestamp');
 
+        // NEW: Updated stability text
+        const STABILITY_TEXT_ACTIVATED = "Upon activation, MCB is stable for 168 hours when stored at 2-8°C, and 56 hours when stored at 25°C.";
+
         // Helper function to format concentration calculation
         function formatConcentration(mg, ml, isInfusionBag = true) {
             const concentration = (mg / ml).toFixed(2);
@@ -828,7 +831,6 @@
                     totalVials = 4;
                     preparationType = 'OD_300_350';
                 } else if (dose === 350) {
-                    // CORRECTED: According to rule 8.vii - 2 MCBs, 0 vials for 350mg OD
                     totalMCB = 2;
                     totalVials = 0;
                     preparationType = 'OD_350';
@@ -1083,7 +1085,7 @@
             };
         }
 
-        // Generate preparation steps based on specific rules
+        // Generate preparation steps based on specific rules (preserving original emphasis)
         function generatePreparationSteps(dose, frequency, preparation) {
             const { totalMCB, totalVials, preparationType } = preparation;
             let stepsHTML = '';
@@ -1118,7 +1120,7 @@
             if (totalVials > 0) {
                 stepsHTML += `
                     <div class="warning-box">
-                        <p><strong>Important Stability Note:</strong> Mixed MCB with vial(s) is stable for 24 hours when stored at 2-8°C. Activated MCB alone is stable for 48 hours when stored at 2-8°C.</p>
+                        <p><strong>Important Stability Note:</strong> Mixed MCB with vial(s) is stable for 24 hours when stored at 2-8°C. Activated MCB alone is stable for 168 hours when stored at 2-8°C, and 56 hours when stored at 25°C.</p>
                         ${frequency === 'od' ? '<p>For "OD for 2 days", the second infusion must be prepared separately 24 hours after the first infusion due to the 24-hour stability limit of mixed MCB with vials.</p>' : ''}
                     </div>
                 `;
@@ -1144,7 +1146,7 @@
             return stepsHTML;
         }
 
-        // Generate steps for BID
+        // Generate steps for BID (preserving all original emphasis)
         function generateBIDSteps(dose, preparationType, stepCounter) {
             let stepsHTML = '';
             
@@ -1171,7 +1173,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox('Activated MCB Calculations:', 400, 400, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         </div>
                     </div>
                 `;
@@ -1269,7 +1271,7 @@
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox('Activated MCB no. 1 Calculations:', 400, 400, false)}
                             ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         </div>
                     </div>
                 `;
@@ -1367,7 +1369,7 @@
                 return { steps, stepCounter: stepCounter + 1 };
             }
             
-            // Handle each specific preparation type
+            // Handle each specific preparation type (original logic preserved)
             switch(preparationType) {
                 case 'BID_200':
                     const result1 = generateBID1MCB(dose, 0, stepCounter);
@@ -1512,7 +1514,7 @@
             return stepsHTML;
         }
 
-        // Generate steps for OD for 2 days
+        // Generate steps for OD for 2 days (preserving all original emphasis)
         function generateODSteps(dose, preparationType, stepCounter) {
             let stepsHTML = '';
             
@@ -1529,7 +1531,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox('Activated MCB Calculations:', 400, 400, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                             <p>4. Transfer 200ml (200mg) from the activated MCB to an empty <span class="emphasis">PVC-free</span> infusion bag.</p>
                             ${createCalculationBox('First Infusion: PVC-free Infusion Bag Calculations:', 200, 200, true)}
                             <div class="warning-box">
@@ -1545,7 +1547,7 @@
                         <div class="step-content">
                             <p>1. Store the remaining 200ml (200mg) in the activated MCB at 2-8°C for Day 2 preparation.</p>
                             ${createCalculationBox('Stored MCB no. 1 Calculations:', 200, 200, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         </div>
                     </div>
                     <div class="step">
@@ -1587,7 +1589,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox('Activated MCB Calculations:', 400, 400, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                             <p>4. Transfer 200ml (200mg) from the activated MCB to an empty <span class="emphasis">PVC-free</span> infusion bag.</p>
                             <p>5. Reconstitute ${vialCountPerInfusion} × 100mg vial${vialCountPerInfusion > 1 ? 's' : ''} with ${10 * vialCountPerInfusion}ml of sterile water for injection.</p>
                             ${createCalculationBox(`Reconstituted Vial${vialCountPerInfusion > 1 ? 's' : ''} Calculations:`, 100 * vialCountPerInfusion, 10 * vialCountPerInfusion, false)}
@@ -1611,7 +1613,7 @@
                         <div class="step-content">
                             <p>1. Store the remaining 200ml (200mg) in the activated MCB at 2-8°C for Day 2 preparation.</p>
                             ${createCalculationBox('Stored MCB Calculations:', 200, 200, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         </div>
                     </div>
                 `;
@@ -1659,7 +1661,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of each bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox(`Activated MCB${mcbsPerDay > 1 ? 's' : ''} Calculations:`, 400 * mcbsPerDay, 400 * mcbsPerDay, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                 `;
                 
                 if (vialsPerDay > 0) {
@@ -1705,7 +1707,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of each bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox(`Activated MCB${mcbsPerDay > 1 ? 's' : ''} Calculations:`, 400 * mcbsPerDay, 400 * mcbsPerDay, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                 `;
                 
                 if (vialsPerDay > 0) {
@@ -1754,7 +1756,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox('Activated MCB no. 1 Calculations:', 400, 400, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                             <p>4. Remove 50ml (50mg) from activated MCB no. 1.</p>
                             ${createCalculationBox('First Infusion: MCB no. 1 Calculations:', 350, 350, true)}
                             <div class="warning-box">
@@ -1772,7 +1774,7 @@
                             <p>2. Press firmly on the <span class="emphasis">centre</span> portion of the bag (the solvent chamber) to apply uniform pressure.</p>
                             <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                             ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
-                            <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                            <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                             <p>4. Remove 50ml (50mg) from activated MCB no. 2.</p>
                             ${createCalculationBox('Second Infusion: MCB no. 2 Calculations:', 350, 350, true)}
                             <div class="warning-box">
@@ -1783,7 +1785,7 @@
                 `;
             }
             
-            // Handle each specific preparation type for OD
+            // Handle each specific preparation type for OD (original logic preserved)
             switch(preparationType) {
                 case 'OD_200':
                     stepsHTML = generateOD200SpecificSteps(stepCounter);
@@ -1809,7 +1811,6 @@
                     stepsHTML = result6.steps;
                     break;
                 case 'OD_350':
-                    // CORRECTED: Use the specific 350mg OD preparation (2 MCBs, 0 vials)
                     stepsHTML = generateOD350SpecificSteps(stepCounter);
                     break;
                 case 'OD_350_400':
@@ -1935,7 +1936,7 @@
             return stepsHTML;
         }
 
-        // Function for exactly 1000mg OD for 2 days
+        // Function for exactly 1000mg OD for 2 days (modified: removed "Remove 200ml...")
         function generateOD1000Steps(stepCounter) {
             return `
                 <div class="step">
@@ -1950,13 +1951,12 @@
                         ${createCalculationBox('Activated MCB no. 1 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
-                        <p>4. Remove 200ml (200mg) from activated MCB no. 1.</p>
-                        <p>5. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 2.</p>
-                        <p>6. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 3.</p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
+                        <p>4. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 2.</p>
+                        <p>5. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 3.</p>
                         ${createCalculationBox('MCB no. 2 (after addition) Calculations:', 500, 500, false)}
                         ${createCalculationBox('MCB no. 3 (after addition) Calculations:', 500, 500, false)}
-                        <p>7. Use MCB no. 2 (500mg) and MCB no. 3 (500mg) for Day 1 infusion (total 1000mg).</p>
+                        <p>6. Use MCB no. 2 (500mg) and MCB no. 3 (500mg) for Day 1 infusion (total 1000mg).</p>
                         ${createCalculationBox('First Infusion: MCB no. 2 Calculations:', 500, 500, true)}
                         ${createCalculationBox('First Infusion: MCB no. 3 Calculations:', 500, 500, true)}
                         <div class="warning-box">
@@ -1972,7 +1972,7 @@
                     <div class="step-content">
                         <p>1. Store activated MCB no. 1 (remaining 200ml = 200mg) at 2-8°C for Day 2 preparation.</p>
                         ${createCalculationBox('Stored MCB no. 1 Calculations:', 200, 200, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                     </div>
                 </div>
                 <div class="step">
@@ -1987,7 +1987,7 @@
                         <p>4. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 5 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>5. Use MCB no. 1 (200mg), MCB no. 4 (400mg), and MCB no. 5 (400mg) for Day 2 infusion (total 1000mg).</p>
                         ${createCalculationBox('Second Infusion: MCB no. 1 Calculations:', 200, 200, true)}
                         ${createCalculationBox('Second Infusion: MCB no. 4 Calculations:', 400, 400, true)}
@@ -2000,7 +2000,7 @@
             `;
         }
 
-        // Function for exactly 1000mg BID
+        // Function for exactly 1000mg BID (modified: removed "Transfer 200ml (200mg) from activated MCB no. 1.")
         function generateBID1000Steps(stepCounter) {
             return `
                 <div class="step">
@@ -2016,13 +2016,12 @@
                         ${createCalculationBox('Activated MCB no. 1 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
-                        <p>5. Transfer 200ml (200mg) from activated MCB no. 1.</p>
-                        <p>6. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 2.</p>
-                        <p>7. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 3.</p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
+                        <p>5. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 2.</p>
+                        <p>6. Transfer 100ml (100mg) from MCB no. 1 into activated MCB no. 3.</p>
                         ${createCalculationBox('MCB no. 2 (after addition) Calculations:', 500, 500, false)}
                         ${createCalculationBox('MCB no. 3 (after addition) Calculations:', 500, 500, false)}
-                        <p>8. Use MCB no. 2 (500mg) and MCB no. 3 (500mg) for the first infusion (total 1000mg).</p>
+                        <p>7. Use MCB no. 2 (500mg) and MCB no. 3 (500mg) for the first infusion (total 1000mg).</p>
                         ${createCalculationBox('First Infusion: MCB no. 2 Calculations:', 500, 500, true)}
                         ${createCalculationBox('First Infusion: MCB no. 3 Calculations:', 500, 500, true)}
                         <div class="warning-box">
@@ -2040,7 +2039,7 @@
                         ${createCalculationBox('Stored MCB no. 1 Calculations:', 200, 200, false)}
                         ${createCalculationBox('Stored MCB no. 4 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Stored MCB no. 5 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                     </div>
                 </div>
                 <div class="step">
@@ -2076,7 +2075,7 @@
                         <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                         ${createCalculationBox('First Infusion: MCB no. 1 Calculations:', 400, 400, true)}
                         ${createCalculationBox('First Infusion: MCB no. 2 Calculations:', 400, 400, true)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                     </div>
                 </div>
                 <div class="step">
@@ -2090,7 +2089,7 @@
                         <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                         ${createCalculationBox('Second Infusion: MCB no. 3 Calculations:', 400, 400, true)}
                         ${createCalculationBox('Second Infusion: MCB no. 4 Calculations:', 400, 400, true)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                     </div>
                 </div>
             `;
@@ -2115,7 +2114,7 @@
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute 1 × 100mg vial with 10ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vial Calculations:', 100, 10, false)}
                     </div>
@@ -2177,7 +2176,7 @@
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute 3 × 100mg vials with 30ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vials Calculations:', 300, 30, false)}
                     </div>
@@ -2230,7 +2229,7 @@
                         <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                         ${createCalculationBox('Activated MCB no. 1 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute 1 × 100mg vial with 10ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vial Calculations:', 100, 10, false)}
                         <p>5. Transfer 10ml (100mg) from the reconstituted vial to activated MCB no. 1.</p>
@@ -2253,7 +2252,7 @@
                         <p>3. Activate with <span class="emphasis">vigorous mixing</span>.</p>
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute another 1 × 100mg vial with 10ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vial Calculations:', 100, 10, false)}
                         <p>5. Transfer 10ml (100mg) from the reconstituted vial to activated MCB no. 3.</p>
@@ -2287,7 +2286,7 @@
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute 4 × 100mg vials with 40ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vials Calculations:', 400, 40, false)}
                     </div>
@@ -2345,7 +2344,7 @@
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute 3 × 100mg vials with 30ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vials Calculations:', 300, 30, false)}
                     </div>
@@ -2403,7 +2402,7 @@
                         ${createCalculationBox('Activated MCB no. 2 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 3 Calculations:', 400, 400, false)}
                         ${createCalculationBox('Activated MCB no. 4 Calculations:', 400, 400, false)}
-                        <p><em>Upon activation, MCB is stable for 48 hours when stored at 2-8°C.</em></p>
+                        <p><em>${STABILITY_TEXT_ACTIVATED}</em></p>
                         <p>4. Reconstitute 4 × 100mg vials with 40ml of sterile water for injection.</p>
                         ${createCalculationBox('Reconstituted Vials Calculations:', 400, 40, false)}
                     </div>
